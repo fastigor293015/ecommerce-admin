@@ -42,7 +42,9 @@ export const StoreModal = () => {
 
       const res = await axios.post("/api/stores", values);
 
-      toast.success("Store created");
+      // Используем window.location вместо роутера, чтобы избежать случаев,
+      // когда база данных может не успеть подготовить данные для фронта
+      window.location.assign(`/${res.data.id}`);
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
